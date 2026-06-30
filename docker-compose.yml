@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  lb:
+    image: nginx:latest
+    container_name: lb
+    ports:
+      - '8080:80'
+    volumes: 
+      - ./lb/default.conf:/etc/nginx/conf.d/default.conf
+    restart: always
+    depends_on:
+      - web1
+      - web2
+  web1:
+    image: nginx:latest
+    container_name: web1
+    volumes: 
+      - ~/project1/web1:/usr/share/nginx/html
+    restart: always
+  web2:
+    image: nginx:latest
+    container_name: web2
+    volumes: 
+      - ~/project1/web2:/usr/share/nginx/html
+    restart: always
+
