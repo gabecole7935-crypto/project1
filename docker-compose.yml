@@ -30,7 +30,7 @@ services:
     ports:
       - "9090:9090"
     volumes:
-      - ~/projest1/docker-compose.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
     restart: always
   grafana:
     image: grafana:latest
