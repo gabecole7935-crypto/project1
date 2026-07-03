@@ -1,0 +1,22 @@
+name: deploy
+on:
+  push:
+    branches: [ main ]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: check docker compose syntax
+        run: docker compose config
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: action/checkout@v3
+      - name: deploy services
+        run: docker compose up -d 
+      - name: wait for services
+        run: sleep 3
+      - name: health check
+        run: curl http://192.168.188.129:8080/health
