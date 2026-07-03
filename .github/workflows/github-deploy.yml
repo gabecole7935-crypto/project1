@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: test
     steps:
-      - uses: action/checkout@v3
+      - uses: actions/checkout@v3
       - name: deploy services
         run: docker compose up -d 
       - name: wait for services
