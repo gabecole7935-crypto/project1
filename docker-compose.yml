@@ -35,6 +35,6 @@ services:
   grafana:
     image: grafana:latest
     container_name: grafana
-    prots:
+    ports:
       - "3000:3000"
     restart: always
